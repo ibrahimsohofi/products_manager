@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
+    "dev": "bun run dev:fullstack",
     "dev:frontend": "vite --host 0.0.0.0",
     "dev:backend": "cd server && bun run dev",
     "dev:fullstack": "concurrently \"bun run dev:backend\" \"bun run dev:frontend\" --names \"backend,frontend\" --prefix-colors \"blue,green\"",
