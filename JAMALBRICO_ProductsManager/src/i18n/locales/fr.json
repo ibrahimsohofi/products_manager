@@ -36,7 +36,9 @@
     "stockValueCurrentPageDesc": "Valeur du stock sur la page actuelle",
     "lowStock": "Stock Faible",
     "lowStockDesc": "Produits sous le seuil",
-    "page":"Page"
+    "page": "Page",
+    "show": "Afficher les statistiques",
+    "hide": "Masquer les statistiques"
   },
   "products": {
     "add": "Ajouter un produit",

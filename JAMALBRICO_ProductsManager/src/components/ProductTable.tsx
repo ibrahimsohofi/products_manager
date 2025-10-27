@@ -178,7 +178,7 @@ export const ProductTable = memo(function ProductTable({
                         <LazyImage
                           src={product.image_url}
                           alt={product.name}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover "
                           placeholderClassName="w-full h-full bg-gray-200 dark:bg-gray-700"
                           errorFallback="/placeholder.png"
                         />

@@ -22,11 +22,11 @@ export function Navbar() {
           <div className="flex items-center group">
             <Link to="/" className="flex items-center space-x-3 transition-all duration-300 hover:scale-105">
               <div className="flex-shrink-0">
-                <img
+                {/* <img
                   src="/jamalbrico-logo.svg"
                   alt="JAMALBRICO Logo"
                   className="h-8 w-auto md:h-10 transition-all duration-300 hover:brightness-110"
-                />
+                /> */}
               </div>
               <div className="text-white">
                 <h1 className="text-xl md:text-2xl font-bold tracking-tight transition-all duration-300 hover:text-orange-100">

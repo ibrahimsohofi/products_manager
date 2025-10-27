@@ -4,10 +4,14 @@
   "version": "1.0.0",
   "description": "Droguerie Jamal - Professional inventory management system for hardware and DIY stores in Morocco",
   "type": "module",
-  "scripts": {
-    "dev": "concurrently \"cd backend && node server.js\" \"vite --host 0.0.0.0\"",
-    "build": "tsc -b && vite build --outDir dist",
-    "lint": "bunx tsc --noEmit && bunx biome lint --write",
+ "scripts": {
+    "dev": "bun run dev:fullstack",
+    "dev:frontend": "vite --host 0.0.0.0",
+    "dev:backend": "cd backend && bun run dev",
+    "dev:fullstack": "concurrently \"bun run dev:backend\" \"bun run dev:frontend\" --names \"productsmanager_backend,productsmanager_frontend\" --prefix-colors \"yellow,blue\"",
+    "start": "bun run dev:fullstack",
+    "build": "vite build --outDir dist",
+    "lint": "bunx biome lint --write",
     "format": "bunx biome format --write",
     "preview": "vite preview"
   },

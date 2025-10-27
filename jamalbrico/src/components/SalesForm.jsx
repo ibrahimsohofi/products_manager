@@ -87,7 +87,7 @@ const SalesForm = ({ onSaleAdded, editingSale, onEditComplete }) => {
     }
 
     try {
-      const products = await inventoryService.searchProducts(query, 5);
+      const products = await inventoryService.searchProducts(query, 10);
       setProductSuggestions(products);
       setShowSuggestions(true);
     } catch (error) {
@@ -148,12 +148,8 @@ const SalesForm = ({ onSaleAdded, editingSale, onEditComplete }) => {
     'Quincaillerie',
     'Outillage',
     'Électricité',
-    'Outils manuels',
-    'Outils électriques',
     'Plomberie',
-    'Jardinage',
-    'Ménage & Entretien',
-    'Sécurité',
+    'Visserie et boulonnerie',
     'Autre'
   ];
 
@@ -335,16 +331,16 @@ const SalesForm = ({ onSaleAdded, editingSale, onEditComplete }) => {
 
             {/* Product Suggestions Dropdown */}
             {showSuggestions && productSuggestions.length > 0 && (
-              <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg max-h-60 overflow-y-auto">
+              <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg max-h-72 overflow-y-auto">
                 {productSuggestions.map((product) => (
                   <div
                     key={product.id}
                     onClick={() => selectProduct(product)}
-                    className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer border-b border-gray-200 dark:border-gray-600 last:border-b-0"
+                    className="px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer border-b border-gray-200 dark:border-gray-600 last:border-b-0"
                   >
                     <div className="flex justify-between items-center">
                       <div>
-                        <p className="font-medium text-gray-900 dark:text-white">{product.name}</p>
+                        <p className="font-medium text-md text-gray-900 dark:text-white">{product.name}</p>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
                           {product.category} • Stock: {product.stock_quantity} • ${product.price}
                         </p>

@@ -67,7 +67,7 @@ export function ProductHoverModal({ product, categories, position, isVisible }: 
               <img
                 src={product.image_url}
                 alt={product.name}
-                className="w-full h-72  transition-transform hover:scale-105"
+                className="w-full h-72  transition-transform hover:scale-105 "
                 onError={() => setImageError(true)}
               />
             ) : (

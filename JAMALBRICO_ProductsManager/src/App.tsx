@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Plus, Package, TrendingUp, AlertTriangle, ArrowLeft, Edit, Download, CheckSquare, Square, FileSpreadsheet } from "lucide-react";
+import { Plus, Package, TrendingUp, AlertTriangle, ArrowLeft, Edit, Download, CheckSquare, Square, FileSpreadsheet, BarChart3, BarChart3Icon } from "lucide-react";
 import * as XLSX from 'xlsx';
 import { Navbar } from "./components/Navbar";
 import { ProductTable } from "./components/ProductTable";
@@ -90,6 +90,7 @@ function Dashboard() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [showStats,setShowStats]=useState(true);
 
   // Export functionality states
   const [isExportMode, setIsExportMode] = useState(false);
@@ -630,7 +631,9 @@ function Dashboard() {
       </div>
     );
   }
-
+function handleShowStats(){
+  setShowStats(showStats?false:true)
+}
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <Navbar />
@@ -699,7 +702,14 @@ function Dashboard() {
                 </Button>
               </div>
             )}
-
+            <Button
+                onClick={handleShowStats}
+                variant= "outline"
+                className={showStats ? "border-blue-600 bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:border-blue-400 dark:text-blue-400" : "border-blue-600 text-blue-600 hover:bg-blue-50 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/20"}>
+                 <BarChart3Icon className="mr-2 h-4 w-4" />
+               
+                {showStats ? t('stats.show') : t('stats.hide')}
+            </Button>
             {/* Export Toggle Button */}
             <Button
               onClick={handleToggleExportMode}
@@ -725,7 +735,8 @@ function Dashboard() {
           </div>
         </div>
 
-        {/* Stats Cards */}
+        <div className={showStats?"hidden":"visible"}>
+          {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-5">
           <Card className="border-2 shadow-lg border-blue-800 dark:border-blue-400 dark:bg-gray-800">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -837,6 +848,7 @@ function Dashboard() {
               </p>
             </CardContent>
           </Card>
+        </div>
         </div>
 
         {/* Filters */}

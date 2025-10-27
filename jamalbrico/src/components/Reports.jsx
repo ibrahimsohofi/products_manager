@@ -33,7 +33,7 @@ const Reports = () => {
       setSalesData(sales);
 
       // Calculate analytics
-      const totalRevenue = sales.reduce((sum, sale) => sum + (sale.totalPrice || 0), 0);
+      const totalRevenue = sales.reduce((sum, sale) => sum + (Number(sale.totalPrice) || 0), 0);
       const totalSales = sales.length;
       const averageOrderValue = totalSales > 0 ? totalRevenue / totalSales : 0;
 
@@ -41,11 +41,11 @@ const Reports = () => {
       const categoryTotals = {};
       for (const sale of sales) {
         const category = sale.category || 'Uncategorized';
-        categoryTotals[category] = (categoryTotals[category] || 0) + (sale.totalPrice || 0);
+        categoryTotals[category] = (categoryTotals[category] || 0) + (Number(sale.totalPrice) || 0);
       }
       const topCategories = Object.entries(categoryTotals)
         .map(([category, revenue]) => ({ category, revenue }))
-        .sort((a, b) => b.revenue - a.revenue)
+        .sort((a, b) =>b.revenue - a.revenue)
         .slice(0, 5);
 
       // Top products
@@ -56,7 +56,7 @@ const Reports = () => {
           productTotals[product] = { name: product, quantity: 0, revenue: 0 };
         }
         productTotals[product].quantity += sale.quantity || 0;
-        productTotals[product].revenue += sale.totalPrice || 0;
+        productTotals[product].revenue += Number(sale.totalPrice) || 0;
       }
       const topProducts = Object.values(productTotals)
         .sort((a, b) => b.revenue - a.revenue)
@@ -70,7 +70,7 @@ const Reports = () => {
           dailySales[date] = { date, sales: 0, revenue: 0 };
         }
         dailySales[date].sales += 1;
-        dailySales[date].revenue += sale.totalPrice || 0;
+        dailySales[date].revenue += Number(sale.totalPrice) || 0;
       }
       const salesByDay = Object.values(dailySales).sort((a, b) => new Date(a.date) - new Date(b.date));
 
@@ -124,9 +124,9 @@ const Reports = () => {
   };
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('fr-FR', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'MAD'
     }).format(amount);
   };
 
@@ -323,7 +323,7 @@ const Reports = () => {
                 {analytics.salesByDay.map((day) => (
                   <tr key={day.date}>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                      {new Date(day.date).toLocaleDateString()}
+                      {new Date(day.date).toLocaleDateString('fr-Fr',)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                       {day.sales}
