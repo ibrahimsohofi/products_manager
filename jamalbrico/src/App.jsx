@@ -116,7 +116,7 @@ function App() {
             <div className="flex justify-between items-center">
               <div>
                 <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-                  JAMALBRICO
+                  SOHOFIBRICO
                 </h1>
               </div>
               <DarkModeToggle />

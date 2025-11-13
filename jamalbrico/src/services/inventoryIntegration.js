@@ -33,7 +33,8 @@ class InventoryIntegrationService {
         current_stock: product.remaining_stock,
         is_low_stock: product.remaining_stock <= 5, // You can adjust this threshold
         product_name: product.name,
-        unit: product.unit
+        unit: product.unit,
+        img_path:product.image_url
       };
     } catch (error) {
       console.error('Error checking product availability:', error);
@@ -50,6 +51,7 @@ class InventoryIntegrationService {
       if (!data.success) {
         throw new Error(data.error || 'Search failed');
       }
+     
 
       return data.products;
     } catch (error) {

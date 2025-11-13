@@ -19,6 +19,7 @@ const SalesForm = ({ onSaleAdded, editingSale, onEditComplete }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [stockInfo, setStockInfo] = useState(null);
   const [isValidating, setIsValidating] = useState(false);
+  const [size,setSize]=useState("h-10 w-10")
 
   // Check inventory system connection on mount
   useEffect(() => {
@@ -279,6 +280,14 @@ const SalesForm = ({ onSaleAdded, editingSale, onEditComplete }) => {
   const totalPrice = formData.price && formData.quantity
     ? ((Number.parseFloat(formData.price) || 0) * (Number.parseInt(formData.quantity) || 0)).toFixed(2)
     : '0.00';
+   const ProductQuickView=()=>{
+    return(
+      <div className='absolute'>
+  
+
+      </div>
+    )
+   }
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
@@ -336,15 +345,21 @@ const SalesForm = ({ onSaleAdded, editingSale, onEditComplete }) => {
                   <div
                     key={product.id}
                     onClick={() => selectProduct(product)}
+                    
                     className="px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer border-b border-gray-200 dark:border-gray-600 last:border-b-0"
                   >
-                    <div className="flex justify-between items-center">
+                    <div  className="flex justify-between items-center">
+                     
                       <div>
                         <p className="font-medium text-md text-gray-900 dark:text-white">{product.name}</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                          {product.category} • Stock: {product.stock_quantity} • ${product.price}
+                     
+                        <p className="text-sm text-gray-600 dark:text-gray-400  ">
+                          {product.category} • Stock: {product.stock_quantity} • ${product.price}  
                         </p>
+                        
+                  
                       </div>
+                       <img className="h-14 w-14 rounded-sm" src={product.image_url} alt={product.name} />
                     </div>
                   </div>
                 ))}

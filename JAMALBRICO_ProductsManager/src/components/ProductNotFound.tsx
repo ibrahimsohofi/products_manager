@@ -27,11 +27,6 @@ export function ProductNotFound({
         <Card className="border-none  dark:bg-blue-950/20 max-w-3xl h-[25rem]  shadow-2xl">
           <CardHeader className="text-center pb-6">
             <div className="flex flex-col items-center space-y-4 mb-4">
-              <img
-                src="/jamalbrico-logo.svg"
-                alt="JAMALBRICO"
-                className="h-12 w-auto opacity-80"
-              />
               <div className="p-4 rounded-full bg-orange-100 dark:bg-orange-900/30">
                 <Package className="h-16 w-16 text-orange-600 dark:text-orange-400" />
               </div>
@@ -108,11 +103,6 @@ export function ProductNotFoundInline({
 
   return (
     <div className="flex flex-col items-center justify-center py-12 space-y-4">
-      <img
-        src="/jamalbrico-logo.svg"
-        alt="JAMALBRICO"
-        className="h-10 w-auto opacity-70 mb-2"
-      />
       <div className="p-3 rounded-full bg-orange-100 dark:bg-orange-900/30">
         <Package className="h-12 w-12 text-orange-600 dark:text-orange-400" />
       </div>

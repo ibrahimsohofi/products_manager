@@ -21,16 +21,10 @@ export function Navbar() {
           {/* Logo Section */}
           <div className="flex items-center group">
             <Link to="/" className="flex items-center space-x-3 transition-all duration-300 hover:scale-105">
-              <div className="flex-shrink-0">
-                {/* <img
-                  src="/jamalbrico-logo.svg"
-                  alt="JAMALBRICO Logo"
-                  className="h-8 w-auto md:h-10 transition-all duration-300 hover:brightness-110"
-                /> */}
-              </div>
+             
               <div className="text-white">
                 <h1 className="text-xl md:text-2xl font-bold tracking-tight transition-all duration-300 hover:text-orange-100">
-                  JAMALBRICO
+                  SOHOFIBRICO
                 </h1>
                 <p className="text-xs text-blue-200 hidden md:block">
                   {t("business.tagline", "Solutions Pro")}
@@ -60,10 +54,10 @@ export function Navbar() {
             </button>
 
             {/* Desktop status indicator */}
-            <div className="hidden md:flex items-center space-x-2 px-3 py-1.5 bg-green-500/20 border border-green-400/30 rounded-lg">
+            <div className="hidden md:flex items-center space-x-1 px-3 py-2 bg-green-500/20 border border-green-400/30 rounded-lg  ">
               <div className="h-2 w-2 bg-green-400 rounded-full animate-pulse" />
               <span className="text-xs text-green-300 font-medium">
-                En ligne
+               {t("nav.enligne")}
               </span>
             </div>
 
@@ -76,11 +70,6 @@ export function Navbar() {
         <div className="md:hidden border-t border-white/10 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <img
-                src="/jamalbrico-logo.svg"
-                alt="JAMALBRICO"
-                className="h-6 w-auto opacity-80"
-              />
               <div className="flex items-center space-x-2 text-sm text-white">
                 <ShoppingCart className="h-4 w-4 text-orange-400" />
                 <span>{t("nav.inventory", "Inventaire")}</span>

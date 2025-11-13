@@ -490,6 +490,7 @@ app.get("/api/products", async (req, res) => {
             dbQuery.execute(countQuery, countParams)
         ]);
 
+
         const total = countResult[0].total;
         const totalPages = Math.ceil(total / limitNum);
 
@@ -1176,7 +1177,9 @@ app.get("/api/integration/low-stock", async (req, res) => {
     res.json({
       success: true, low_stock_products: lowStockProducts, count: lowStockProducts.length, summary: {
         out_of_stock: lowStockProducts.filter(p => p.status === 'out_of_stock').length, critical: lowStockProducts.filter(p => p.status === 'critical').length, low: lowStockProducts.filter(p => p.status === 'low') .length
+
                             
+
                         }
                     }
                 );
@@ -1295,6 +1298,7 @@ app.get("/api/integration/low-stock", async (req, res) => {
             p.unit,
             p.sku,
             p.barcode,
+            p.image_url,
             c.name as category,
             c.name_ar as category_ar,
             c.name_fr as category_fr

@@ -1,5 +1,15 @@
 import {useState, useEffect, useCallback} from 'react';
-import { Edit, Trash2, AlertTriangle, ImageIcon, Eye, Square, CheckSquare } from "lucide-react";
+import {
+    Edit,
+    Trash2,
+    AlertTriangle,
+    ImageIcon,
+    Eye,
+    Square,
+    CheckSquare
+} from "lucide-react";
+import {Button} from "./ui/button";
+
 
 const Inventory = () => {
     const [products, setProducts] = useState([]);
@@ -24,9 +34,11 @@ const Inventory = () => {
                 params.append('search', searchTerm);
             
 
+
             if (categoryFilter) 
                 params.append('category', categoryFilter);
             
+
 
             if (showLowStock) 
                 params.append('low_stock', 'true');
@@ -111,6 +123,7 @@ const Inventory = () => {
             return 'N/A';
         
 
+
         return new Intl.NumberFormat('fr-MA', {
             style: 'currency',
             currency: 'MAD',
@@ -124,9 +137,11 @@ const Inventory = () => {
             return 'text-red-600 bg-red-100';
         
 
+
         if (product.stock_quantity <= product.min_stock_level * 1.5) 
             return 'text-yellow-600 bg-yellow-100';
         
+
 
         return 'text-green-600 bg-green-100';
     };
@@ -140,7 +155,7 @@ const Inventory = () => {
     }
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-5">
             {/* Header */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                 <div>
@@ -253,7 +268,9 @@ const Inventory = () => {
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                             Category
                         </label>
-                        <select key={searchTerm}
+                        <select key={
+                                stats.id
+                            }
                             value={categoryFilter}
                             onChange={
                                 (e) => setCategoryFilter(e.target.value)
@@ -263,7 +280,7 @@ const Inventory = () => {
                             {
                             categories.map((category) => (
                                 <option key={
-                                        category.category
+                                        category.id
                                     }
                                     value={
                                         category.category
@@ -345,9 +362,9 @@ const Inventory = () => {
                                     className="hover:bg-gray-50 dark:hover:bg-gray-700">
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm font-medium text-gray-900 dark:text-white">
-                                            <img className="rounded-md h-16 bg-white w-16"
+                                            <img className="rounded-md h-14 bg-white w-14"
                                                 src={
-                                                    product.image_url ? product.image_url : "placeholder.png"
+                                                    product.image_url ? product.image_url : "./placeholder.png"
                                                 }
                                                 alt={
                                                     product.name
@@ -404,7 +421,7 @@ const Inventory = () => {
                                             } </div>
                                         )
                                     } </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    <td className="px-6 py-2 whitespace-nowrap">
                                         <span className={
                                             `inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                                                 getStockStatusColor(product)
@@ -421,37 +438,30 @@ const Inventory = () => {
                                             product.min_stock_level
                                         } </div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                                    <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                                         {
                                         product.supplier_name || 'No Supplier'
                                     } </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <button onClick={
-                                                () => setEditingProduct(product)
-                                            }
-                                            className="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 mr-3">
-                                            Edit
-                                        </button>
-                                        <button onClick={
-                                                () => handleDeleteProduct(product.id)
-                                            }
-                                            className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
-                                            Delete
-                                        </button>
-                                        <div className="flex justify-end space-x-2">
+                                    <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
+                                        <div className=' flex gap-2 justify-center items-center'>
                                             <Button className="text-blue-700 hover:bg-blue-100  hover:text-blue-800  border border-gray-300 dark:border dark:border-gray-700" variant="outline" size="sm"
                                                 onClick={
                                                     () => setEditingProduct(product)
                                             }>
                                                 <Edit className="h-4 w-4"/>
                                             </Button>
+                                            <Button key={
+                                                    product.id
+                                                }
+                                                className="text-[#D32F2F] hover:bg-red-50  hover:text-red-700  border border-gray-300 dark:border dark:border-gray-700"
+                                                variant="outline"
+                                                size="sm"
+                                                onClick={
+                                                    () => handleDeleteProduct(product.id)
+                                            }>
+                                                <Trash2 className="h-10 w-10"/>
+                                            </Button>
                                         </div>
-                                        <Button className="text-[#D32F2F] hover:bg-red-50  hover:text-red-700  border border-gray-300 dark:border dark:border-gray-700" variant="outline" size="sm"
-                                            onClick={
-                                                () => handleDeleteProduct(product.id)
-                                        }>
-                                            <Trash2 className="h-10 w-10"/>
-                                        </Button>
                                     </td>
                                 </tr>
                             ))

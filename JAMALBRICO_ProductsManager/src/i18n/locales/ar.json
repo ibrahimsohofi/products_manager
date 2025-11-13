@@ -15,7 +15,8 @@
     "products": "المنتجات",
     "categories": "الفئات",
     "reports": "التقارير",
-    "active": "نشط"
+    "active": "نشط",
+    "enligne":"متصل"
   },
   "theme": {
     "light": "فاتح",
