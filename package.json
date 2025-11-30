@@ -17,7 +17,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"cd JAMALBRICO_ProductsManager && bun run dev\" \"cd jamalbrico && bun run dev ",
+    "dev": "concurrently \"cd JAMALBRICO_ProductsManager && bun run dev\" \"cd jamalbrico && bun run dev\""
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
