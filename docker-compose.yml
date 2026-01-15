@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: jamalbrico_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: jamalbrico123
+      MYSQL_DATABASE: jamalbrico
+      MYSQL_USER: jamalbrico_user
+      MYSQL_PASSWORD: jamalbrico_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./jamalbrico/database/jamalbrico_mysql_complete.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - jamalbrico_network
+
+  # Optional: phpMyAdmin for database management
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: jamalbrico_phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: jamalbrico123
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    networks:
+      - jamalbrico_network
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  jamalbrico_network:
+    driver: bridge
